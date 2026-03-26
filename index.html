@@ -39,10 +39,17 @@
   <div id="header-placeholder"></div>
 
   <main id="main">
+    <svg class="svg-defs" aria-hidden="true" width="0" height="0" focusable="false">
+      <defs>
+        <clipPath id="hero-home-wave-clip" clipPathUnits="objectBoundingBox">
+          <path d="M0,0 H1 V0.97 C0.75,0.94 0.25,1 0,0.97 V0 Z"/>
+        </clipPath>
+      </defs>
+    </svg>
 
     <!-- ===================== HERO ===================== -->
-    <section class="hero" aria-label="Hero">
-      <div class="hero__bg" role="img" aria-label="Insulation installation on a residential home"></div>
+    <section class="hero hero--home" aria-label="Hero">
+      <div class="hero__bg" style="background-image: url('public/home-hero.webp');" role="img" aria-label="Insulation installation on a residential home"></div>
       <div class="hero__overlay"></div>
       <div class="container">
         <div class="hero__content">
@@ -54,12 +61,12 @@
             Insulation Supply &amp; Install across<br><span class="gradient-text">South East Queensland</span>
           </h1>
           <p class="hero__subheadline">
-            Smarter homes start with better insulation. We supply and install ceiling, wall, and acoustic insulation for homeowners across the Gold Coast and South East Queensland — done right, first time.
+            Smarter homes start with better insulation. We supply and install ceiling, wall, and acoustic insulation for homeowners across the Gold Coast and South East Queensland - done right, first time.
           </p>
           <div class="hero__cta-group">
             <a href="tel:+61402886173" class="btn btn--primary btn--lg">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.15a16 16 0 006 6l1.51-1.51a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
-              Call Us Today — Free Quote
+              Call Us Today: Free Quote
             </a>
             <a href="contact.html" class="btn btn--outline btn--lg">Get a Free Quote</a>
           </div>
@@ -85,8 +92,8 @@
       </div>
     </section>
 
-    <!-- Wave: Hero → Services -->
-    <div class="wave-divider wave-divider--white" aria-hidden="true">
+    <!-- Wave: hero image clips to same curve via clip-path -->
+    <div class="wave-divider wave-divider--white wave-divider--hero-home" aria-hidden="true">
       <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="currentColor"/>
       </svg>
@@ -137,7 +144,7 @@
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"/><path d="M4 20V10L12 3l8 7v10"/><path d="M9 20v-5h6v5"/></svg>
             </div>
             <h3 class="service-card__title">New Build Insulation</h3>
-            <p class="service-card__desc">Working with builders across South East Queensland, we install wall and ceiling insulation during construction to NCC energy efficiency requirements — on schedule, on spec.</p>
+            <p class="service-card__desc">Working with builders across South East Queensland, we install wall and ceiling insulation during construction to NCC energy efficiency requirements - on schedule, on spec.</p>
             <span class="service-card__link">Learn more <svg class="service-card__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
           </a>
         </div>
@@ -161,7 +168,7 @@
           </div>
           <div class="about-section__content animate-on-scroll">
             <h2 id="about-heading">About <span class="gradient-text">Elite Home Insulation</span></h2>
-            <p>Scotty Williams founded Elite Home Insulation on the Gold Coast with a straightforward mission — making homes more comfortable to live in while reducing energy costs for homeowners.</p>
+            <p>Scotty Williams founded Elite Home Insulation on the Gold Coast with a straightforward mission - making homes more comfortable to live in while reducing energy costs for homeowners.</p>
             <p>Specialising in both retrofit and new build insulation, we work across South East Queensland and Northern NSW, supplying and installing wall, ceiling, and acoustic insulation solutions. Whether you're renovating an existing home or building from scratch, we deliver quality workmanship and the right product for your space.</p>
             <div class="about-section__features">
               <div class="about-section__feature">
@@ -253,7 +260,7 @@
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <h3 class="why-us-card__title">On-Time Installs</h3>
-            <p class="why-us-card__desc">We show up when we say we will and get the job done without dragging it out. Your time matters — we respect that.</p>
+            <p class="why-us-card__desc">We show up when we say we will and get the job done without dragging it out. Your time matters - we respect that.</p>
           </div>
           <div class="why-us-card">
             <div class="why-us-card__icon" aria-hidden="true">
@@ -267,7 +274,7 @@
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
             </div>
             <h3 class="why-us-card__title">Right Product, Right Space</h3>
-            <p class="why-us-card__desc">We assess your home before recommending a product. Different spaces need different R-values — we'll make sure you get the right one.</p>
+            <p class="why-us-card__desc">We assess your home before recommending a product. Different spaces need different R-values - we'll make sure you get the right one.</p>
           </div>
         </div>
       </div>

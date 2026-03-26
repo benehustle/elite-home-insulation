@@ -297,6 +297,94 @@ p {
   background: rgba(255,255,255,0.1);
 }
 
+/* Desktop: Services flyout */
+.nav__item--dropdown {
+  position: relative;
+}
+
+.nav__link--dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav__dropdown-caret {
+  flex-shrink: 0;
+  opacity: 0.75;
+  transition: transform var(--transition-base);
+}
+
+.nav__item--dropdown:hover .nav__dropdown-caret,
+.nav__item--dropdown:focus-within .nav__dropdown-caret {
+  transform: rotate(180deg);
+}
+
+.nav__dropdown {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 4px);
+  min-width: 280px;
+  padding: 8px 0;
+  margin: 0;
+  background: rgba(var(--color-secondary-rgb), 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  z-index: 1001;
+}
+
+/* Invisible bridge so pointer can reach the panel without closing */
+.nav__dropdown::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 12px;
+}
+
+.nav__item--dropdown:hover .nav__dropdown,
+.nav__item--dropdown:focus-within .nav__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.nav__dropdown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__dropdown-link {
+  display: block;
+  padding: 10px 18px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.35;
+  transition: color var(--transition-base), background var(--transition-base);
+}
+
+.nav__dropdown-link:hover,
+.nav__dropdown-link:focus-visible {
+  color: var(--color-white);
+  background: rgba(255,255,255,0.08);
+}
+
+.nav__dropdown-link.active {
+  color: var(--color-primary-light);
+  background: rgba(var(--color-primary-rgb), 0.12);
+}
+
 .nav__cta {
   display: inline-flex;
   align-items: center;
@@ -411,6 +499,74 @@ p {
   justify-content: center;
 }
 
+.nav__drawer-details {
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.nav__drawer-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  cursor: pointer;
+  font-size: 1.0625rem;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  color: rgba(255,255,255,0.8);
+  transition: color var(--transition-base), background var(--transition-base);
+}
+
+.nav__drawer-summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav__drawer-summary::after {
+  content: "";
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-left: 12px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0.6;
+  transition: transform 0.2s ease;
+}
+
+.nav__drawer-details[open] .nav__drawer-summary::after {
+  transform: rotate(225deg);
+}
+
+.nav__drawer-summary:hover {
+  color: var(--color-white);
+  background: rgba(255,255,255,0.06);
+}
+
+.nav__drawer-sub {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 0 12px 8px;
+}
+
+.nav__drawer-sub .nav__link--sub {
+  font-size: 0.9375rem;
+  padding: 10px 16px 10px 20px;
+  border-bottom: none;
+  color: rgba(255,255,255,0.65);
+  border-radius: var(--radius-md);
+}
+
+.nav__drawer-sub .nav__link--sub:hover,
+.nav__drawer-sub .nav__link--sub:focus-visible {
+  color: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.06);
+}
+
+.nav__drawer-sub .nav__link--sub.active {
+  color: var(--color-primary-light);
+}
+
 /* ============================================
    8. HERO SECTION
    ============================================ */
@@ -423,11 +579,21 @@ p {
   background-color: var(--color-secondary);
 }
 
+/* Index: bottom wave — image & overlay follow the same curve as the divider (SVG clip) */
+.hero--home {
+  -webkit-clip-path: url(#hero-home-wave-clip);
+  clip-path: url(#hero-home-wave-clip);
+}
+
+.hero--home .hero__bg {
+  background-attachment: scroll;
+}
+
 .hero__bg {
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80');
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
 }
@@ -506,16 +672,21 @@ p {
   flex-shrink: 0;
 }
 
-/* Page-level heroes */
+/* Page-level heroes (all pages except index) — extra breathing room */
 .hero--page {
-  min-height: 45vh;
+  min-height: clamp(360px, 52vh, 640px);
   align-items: flex-end;
   padding-bottom: 0;
 }
 
+.hero--page .container {
+  padding-left: calc(var(--container-padding) + clamp(12px, 3vw, 28px));
+  padding-right: calc(var(--container-padding) + clamp(12px, 3vw, 28px));
+}
+
 .hero--page .hero__content {
-  padding-top: 100px;
-  padding-bottom: 64px;
+  padding-top: clamp(112px, 15vh, 168px);
+  padding-bottom: clamp(80px, 10vh, 120px);
   max-width: 800px;
 }
 
@@ -559,6 +730,11 @@ p {
     transform: none;
     animation: none;
   }
+
+  .nav__item--dropdown .nav__dropdown,
+  .nav__dropdown-caret {
+    transition: none;
+  }
 }
 
 /* ============================================
@@ -588,6 +764,18 @@ p {
 .wave-divider--light   { color: #f8fafc; }
 .wave-divider--dark    { color: var(--color-secondary); }
 .wave-divider--primary { color: var(--color-primary); }
+
+/* Index hero → services: SVG may leave transparent band above the fill */
+.wave-divider--hero-home {
+  background-color: var(--color-white);
+}
+
+.svg-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
 
 @media (max-width: 640px) {
   .wave-divider {

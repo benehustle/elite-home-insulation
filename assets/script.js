@@ -80,6 +80,7 @@ function initNav() {
     hamburger.classList.remove('is-active');
     hamburger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    drawer.querySelectorAll('.nav__drawer-details[open]').forEach((d) => d.removeAttribute('open'));
   }
 
   hamburger.addEventListener('click', () => {
@@ -111,25 +112,38 @@ function initNav() {
    ============================================ */
 function setActiveNavLink() {
   const currentPath = window.location.pathname;
-  const navLinks = document.querySelectorAll('.nav__link');
+  const currentFile = currentPath.split('/').pop() || 'index.html';
 
-  navLinks.forEach(link => {
+  const servicePages = new Set([
+    'services.html',
+    'ceiling-insulation-supply-and-install.html',
+    'wall-insulation-supply-and-install.html',
+    'acoustic-soundproofing-insulation.html',
+    'retrofit-renovation-insulation.html',
+    'new-build-insulation.html',
+  ]);
+
+  document.querySelectorAll('.nav__link, .nav__dropdown-link').forEach((link) => {
     const href = link.getAttribute('href');
     if (!href) return;
 
-    // Normalise for comparison
-    const linkPath = href.replace(/^\.\.\//, '/').replace(/^\//, '');
-    const currentFile = currentPath.split('/').pop() || 'index.html';
+    const linkFile = href.split('/').pop();
 
     if (
       href === currentPath ||
       currentFile === href ||
-      currentFile === href.split('/').pop() ||
+      currentFile === linkFile ||
       (currentFile === '' && href.includes('index'))
     ) {
       link.classList.add('active');
     }
   });
+
+  if (servicePages.has(currentFile)) {
+    document.querySelectorAll('.nav__link--dropdown-trigger').forEach((el) => {
+      el.classList.add('active');
+    });
+  }
 }
 
 /* ============================================
